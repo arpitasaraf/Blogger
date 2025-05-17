@@ -14,6 +14,25 @@
 {% include "basic/components/cards.html" %}
 </div>
 
+<div>
+
+    {% if blogs.has_previous %}
+         <a href="?page=1"><button>First page</button></a>
+    <a href="?page={{ blogs.previous_page_number }}"><button>Previous</button></a>
+    {% endif %}
+    
+  <span class="current">
+      Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+    </span>
+    {% if blogs.has_next %}
+    <a href="?page={{blogs.next_page_number}}"><button>Next</button></a>
+       <a href="?page={{ blogs.paginator.num_pages }}"><button>last page</button></a>
+    {% endif %}
+       
+</div>
+
+
+
 
 
 {% endblock "mainContent" %}

@@ -7,6 +7,7 @@ from user.views import check_login_view
 from django.contrib.auth.decorators import login_required
 from userprofile.models import UserProfile
 import json 
+from django.core.paginator import Paginator
 
 def home_view(request):
     # import sqlite3
@@ -14,16 +15,23 @@ def home_view(request):
     # data = Blog.objects.all().values() // important  : if you don't want foreign key data. 
     is_logged_in = check_login_view(request)
     data = Blog.objects.filter(is_published__exact = True).select_related('user')
+    paginator = Paginator(data,5)
+    page_number = request.GET.get('page')
+    print(page_number)
+    pageData = paginator.get_page(page_number)
+
     if is_logged_in:
         profile = UserProfile.objects.get(user = request.user)
         dict = {
-        "blogs": data,
+        # "blogs": data,
+        "blogs" : pageData,
         "is_logged_in" : is_logged_in,
         "liked_list" : json.loads(profile.liked_blog_ids)
     }
     else:
         dict = {
-        "blogs": data,
+        # "blogs": data,
+        "blogs" : pageData,
         "is_logged_in" : is_logged_in
     }
     # print(data)
