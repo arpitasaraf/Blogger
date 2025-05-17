@@ -21,7 +21,7 @@ body {
     justify-content: space-between;
     gap: 10px;
     height: 10dvh;
-    background-color: rgb(24, 23, 23);
+    background-color: rgb(255, 0, 0);
     overflow-y: hidden;
     padding: 0px 20px;
 }
