@@ -116,6 +116,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+ADMIN_PATH = os.environ.get("DJANGO_ADMIN_PATH","/admin")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
